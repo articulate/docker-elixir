@@ -1,9 +1,7 @@
-FROM elixir:alpine
+FROM elixir:slim
 
 ENV SERVICE_ROOT /service
 ENV SERVICE_USER service
-
-RUN apk --update add --no-cache bash
 
 # install hex package manager
 RUN mix local.hex --force
