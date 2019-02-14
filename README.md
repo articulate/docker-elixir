@@ -10,7 +10,7 @@ Currently built tags include:
 
 ## Pull Request Tests
 
-PR testing is done through the `Autotest` being run in the dockerhub repo itself.  Each docker image gets tested against a `docker-compose.test.yml` file that requires an `sut` service in it, [as per dockerhub documentation](https://docs.docker.com/docker-hub/builds/automated-testing/).
+PR testing is done through the `Autotest` being run in the dockerhub repo itself.  Each docker image gets tested against a `docker-compose.test.yml` file that requires a `sut` service in it, [as per dockerhub documentation](https://docs.docker.com/docker-hub/builds/automated-testing/).
 
 The configuration for the autotesting can be found in the [Configure Automated Builds section](https://cloud.docker.com/u/articulate/repository/docker/articulate/articulate-elixir/builds/edit).
 
