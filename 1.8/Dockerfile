@@ -14,3 +14,5 @@ WORKDIR $SERVICE_ROOT
 
 ADD https://raw.githubusercontent.com/articulate/docker-consul-template-bootstrap/master/wait-for-it.sh $SERVICE_ROOT/wait-for-it.sh
 RUN chmod a+rx $SERVICE_ROOT/wait-for-it.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
