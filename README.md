@@ -5,7 +5,8 @@ Base Elixir image which contains common dependencies used in our organization.
 This image is auto-built on pushes/merges to master via the [articulate/articulate-elixir](https://cloud.docker.com/u/articulate/repository/docker/articulate/articulate-elixir) Dockerhub repo.
 
 Currently built tags include:
-  - `latest`
+  - `1.10`
+  - `1.9`
   - `1.8`
 
 ## Pull Request Tests

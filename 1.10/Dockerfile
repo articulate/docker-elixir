@@ -1,4 +1,4 @@
-FROM elixir:1.8-slim
+FROM elixir:1.10-slim
 
 ENV SERVICE_ROOT /service
 ENV SERVICE_USER service
