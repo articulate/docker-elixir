@@ -23,5 +23,5 @@ help:
 	@docker build -t articulate/articulate-elixir:1.9 1.9
 .PHONY: 1.9
 
-all: 1.10 1.9 ## Build all Elixir images
+all: 1.12 1.11 1.10 1.9 ## Build all Elixir images
 .PHONY: all
