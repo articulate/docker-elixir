@@ -1,4 +1,4 @@
-FROM elixir:1.13-otp-25-slim
+FROM hexpm/elixir:1.13.4-erlang-25.0.4-debian-bullseye-20220801-slim
 
 ENV SERVICE_ROOT /service
 ENV SERVICE_USER service
