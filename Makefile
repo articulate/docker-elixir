@@ -23,10 +23,5 @@ help:
 	@docker build -t articulate/articulate-elixir:1.10 1.10
 .PHONY: 1.10
 
-1.9: ## Build the Elixir 1.9 image
-	@echo "+ Elixir $@"
-	@docker build -t articulate/articulate-elixir:1.9 1.9
-.PHONY: 1.9
-
-all: 1.13 1.12 1.11 1.10 1.9 ## Build all Elixir images
+all: 1.13 1.12 1.11 1.10 ## Build all Elixir images
 .PHONY: all

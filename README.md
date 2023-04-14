@@ -8,8 +8,7 @@ Elixir version:
 * `1.12`
 * `1.11`
 * `1.10`
-* `1.9`
 
 ## Local Development
 
-Run `make [version]` to build the image locally
+Run `make` to build the image locally
