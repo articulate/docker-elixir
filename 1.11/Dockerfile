@@ -7,12 +7,14 @@ ENV SERVICE_USER service
 ARG TARGETARCH
 ARG AWSCLI_VERSION=2.9.15
 ADD --chmod=755 https://github.com/articulate/docker-consul-template-bootstrap/releases/latest/download/docker-consul-template-bootstrap_linux_${TARGETARCH} /entrypoint
+ADD --chmod=755 https://raw.githubusercontent.com/articulate/docker-consul-template-bootstrap/main/scripts/docker-secrets /usr/local/bin/secrets
 ADD --chmod=755 https://raw.githubusercontent.com/vishnubob/wait-for-it/81b1373f17855a4dc21156cfe1694c31d7d1792e/wait-for-it.sh /wait-for-it.sh
 
 # install hex package manager
 RUN mix local.hex --force && \
     mix local.rebar --force && \
-    groupadd $SERVICE_USER && useradd --create-home --home $SERVICE_ROOT --gid $SERVICE_USER --shell /bin/bash $SERVICE_USER \
+    groupadd --gid 1001 $SERVICE_USER && \
+    useradd --create-home --home $SERVICE_ROOT --shell /bin/bash --gid 1001 --uid 1001 $SERVICE_USER \
     # TODO: these packages will be removed in an upcoming release
     # if you want them, please copy to your Dockerfile
     && apt-get update -qq \
