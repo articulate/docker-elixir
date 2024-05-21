@@ -20,7 +20,7 @@ RUN mix local.hex --force && \
     # if you want them, please copy to your Dockerfile
     && apt-get update -qq \
     && apt-get install --yes --no-install-recommends \
-        unzip sudo jq wget curl ca-certificates \
+        unzip sudo jq wget curl ca-certificates dumb-init \
     && apt-get clean && apt-get autoclean && apt-get -y autoremove --purge \
     && rm -rf /var/lib/apt/lists/* /usr/share/doc /root/.cache/ \
     && curl -s "https://awscli.amazonaws.com/awscli-exe-linux-$(uname -m)-${AWSCLI_VERSION}.zip" -o /tmp/awscliv2.zip \
@@ -30,4 +30,4 @@ RUN mix local.hex --force && \
 
 WORKDIR $SERVICE_ROOT
 
-ENTRYPOINT [ "/entrypoint" ]
+ENTRYPOINT [ "dumb-init", "--", "/entrypoint" ]
