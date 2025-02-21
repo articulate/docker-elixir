@@ -16,11 +16,13 @@ RUN mix local.hex --force && \
     mix local.rebar --force && \
     groupadd --gid 1001 $SERVICE_USER && \
     useradd --create-home --home $SERVICE_ROOT --shell /bin/bash --gid 1001 --uid 1001 $SERVICE_USER \
+    # libc-bin had some cached files that started causing a segfault in the apt-get update https://stackoverflow.com/a/78107622
+    && rm -f /var/lib/dpkg/info/libc-bin.* \
     # TODO: these packages will be removed in an upcoming release
     # if you want them, please copy to your Dockerfile
     && apt-get update -qq \
     && apt-get install --yes --no-install-recommends \
-        unzip sudo jq wget curl ca-certificates dumb-init \
+        libc-bin unzip sudo jq wget curl ca-certificates dumb-init \
     && apt-get clean && apt-get autoclean && apt-get -y autoremove --purge \
     && rm -rf /var/lib/apt/lists/* /usr/share/doc /root/.cache/ \
     && curl -s "https://awscli.amazonaws.com/awscli-exe-linux-$(uname -m)-${AWSCLI_VERSION}.zip" -o /tmp/awscliv2.zip \
