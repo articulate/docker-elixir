@@ -9,7 +9,9 @@ ARG TARGETARCH
 ADD --chmod=755 https://raw.githubusercontent.com/articulate/docker-bootstrap/main/scripts/install_packages /usr/local/bin/install_packages
 ADD --chmod=755 https://raw.githubusercontent.com/articulate/docker-bootstrap/main/scripts/awscli.sh /tmp/awscli.sh
 
-RUN install_packages make dumb-init && /tmp/awscli.sh && rm /tmp/awscli.sh \
+# libc-bin had some cached files that started causing a segfault in the apt-get update https://stackoverflow.com/a/78107622
+RUN rm -f /var/lib/dpkg/info/libc-bin.* \
+    && install_packages libc-bin make dumb-init && /tmp/awscli.sh && rm /tmp/awscli.sh \
     && groupadd --gid $SERVICE_UID $SERVICE_USER \
     && useradd --create-home --shell /bin/bash --gid $SERVICE_UID --uid $SERVICE_UID $SERVICE_USER
 
