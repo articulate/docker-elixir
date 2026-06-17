@@ -15,7 +15,7 @@ jobs:
     outputs:
       dockerfiles: ${{ steps.scan.outputs.dockerfiles }}
   lint:
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     needs: [setup]
     strategy:
       fail-fast: false
