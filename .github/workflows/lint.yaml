@@ -1,10 +1,12 @@
 name: Lint
 
-on: pull_request
+on:
+  pull_request:
+  merge_group:
 
 jobs:
   setup:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - uses: actions/checkout@v3
       - name: Find Dockerfiles
@@ -13,7 +15,7 @@ jobs:
     outputs:
       dockerfiles: ${{ steps.scan.outputs.dockerfiles }}
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     needs: [setup]
     strategy:
       fail-fast: false
@@ -25,3 +27,11 @@ jobs:
         with:
           dockerfile: ${{ matrix.dockerfile }}
           ignore: DL3008
+  lint-complete:
+    if: always()
+    runs-on: ubuntu-slim
+    needs: [lint]
+    steps:
+      - name: Verify lint succeeded
+        run: |
+          [ "${{ needs.lint.result }}" = "success" ] || exit 1
