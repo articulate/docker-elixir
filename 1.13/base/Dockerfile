@@ -9,8 +9,10 @@ ARG TARGETARCH
 ADD --chmod=755 https://raw.githubusercontent.com/articulate/docker-bootstrap/main/scripts/install_packages /usr/local/bin/install_packages
 ADD --chmod=755 https://raw.githubusercontent.com/articulate/docker-bootstrap/main/scripts/awscli.sh /tmp/awscli.sh
 
+# Bullseye security packages moved to the Debian archive after LTS ended.
 # libc-bin had some cached files that started causing a segfault in the apt-get update https://stackoverflow.com/a/78107622
-RUN rm -f /var/lib/dpkg/info/libc-bin.* \
+RUN sed -i 's|http://deb.debian.org/debian-security|https://archive.debian.org/debian-security|' /etc/apt/sources.list \
+    && rm -f /var/lib/dpkg/info/libc-bin.* \
     && install_packages libc-bin make dumb-init && /tmp/awscli.sh && rm /tmp/awscli.sh \
     && groupadd --gid $SERVICE_UID $SERVICE_USER \
     && useradd --create-home --shell /bin/bash --gid $SERVICE_UID --uid $SERVICE_UID $SERVICE_USER
