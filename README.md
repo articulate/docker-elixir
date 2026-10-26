@@ -9,9 +9,6 @@
 > images install are no longer available, so the images cannot be rebuilt. The
 > [published tags](#tags) stay on Docker Hub, frozen at their last successful
 > build.
->
-> Known consumers: `articulate/rise-authoring-api` and
-> `articulate/rise-business-content`, both on `articulate/articulate-elixir:1.13`.
 
 Base Elixir Docker images.
 
