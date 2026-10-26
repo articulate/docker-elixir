@@ -1,5 +1,18 @@
 # Docker Elixir Images
 
+> [!WARNING]
+> **Deprecated.** These images are no longer built or maintained, and this
+> repository is archived. Do not use them for new services; Articulate no longer
+> builds new services in Elixir.
+>
+> Elixir 1.13 is end of life, and the Debian bullseye security packages these
+> images install are no longer available, so the images cannot be rebuilt. The
+> [published tags](#tags) stay on Docker Hub, frozen at their last successful
+> build.
+>
+> Known consumers: `articulate/rise-authoring-api` and
+> `articulate/rise-business-content`, both on `articulate/articulate-elixir:1.13`.
+
 Base Elixir Docker images.
 
 ## What's Included
@@ -15,24 +28,11 @@ Base Elixir Docker images.
 
 ## Tags
 
-> 🌟 recommended image
-
-* __articulate/elixir:1.13__ 🌟
+* articulate/elixir:1.13
 * articulate/articulate-elixir:1.13
 
 ### articulate/elixir vs articulate/articulate-elixir
 
 `articulate/articulate-elixir` are the legacy Docker images. These run as root and
-include additional software not always needed. Use `articulate/elixir` where possible
-and install your own software with `install_packages`.
-
-## Creating a new image
-
-The easiest way to create a new image is to copy an existing one and change the
-base image. If creating from scratch, the images need the following:
-
-* Everything listed in [What's included](#whats-included)
-* `make` for internal tooling.
-* A _service_ user and group with a GID and UID of 1001. This should be the default
-  user.
-* A _/service_ directory as the default working directory.
+include additional software not always needed. `articulate/elixir` runs as a
+non-root _service_ user and provides `install_packages` for adding software.
