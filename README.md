@@ -19,7 +19,6 @@ Base Elixir Docker images.
 
 * __articulate/elixir:1.13__ 🌟
 * articulate/articulate-elixir:1.13
-* articulate/articulate-elixir:1.12
 
 ### articulate/elixir vs articulate/articulate-elixir
 
